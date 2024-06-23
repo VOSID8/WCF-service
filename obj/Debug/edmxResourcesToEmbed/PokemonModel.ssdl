@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PokemonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__EFMigrationsHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="countries">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Owners">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Gym" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CountryId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pokemon">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BirthDate" Type="datetime2" Precision="7" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PokemonCategories">
+    <Key>
+      <PropertyRef Name="PokemonId" />
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="PokemonId" Type="int" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PokemonOwners">
+    <Key>
+      <PropertyRef Name="PokemonId" />
+      <PropertyRef Name="OwnerId" />
+    </Key>
+    <Property Name="PokemonId" Type="int" Nullable="false" />
+    <Property Name="OwnerId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Reviewers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Reviews">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Rating" Type="int" Nullable="false" />
+    <Property Name="ReviewerId" Type="int" Nullable="false" />
+    <Property Name="PokemonId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Owners_countries_CountryId">
+    <End Role="countries" Type="Self.countries" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Owners" Type="Self.Owners" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="countries">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Owners">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PokemonCategories_Categories_CategoryId">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PokemonCategories" Type="Self.PokemonCategories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PokemonCategories">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PokemonCategories_Pokemon_PokemonId">
+    <End Role="Pokemon" Type="Self.Pokemon" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PokemonCategories" Type="Self.PokemonCategories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pokemon">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PokemonCategories">
+        <PropertyRef Name="PokemonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PokemonOwners_Owners_OwnerId">
+    <End Role="Owners" Type="Self.Owners" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PokemonOwners" Type="Self.PokemonOwners" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Owners">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PokemonOwners">
+        <PropertyRef Name="OwnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PokemonOwners_Pokemon_PokemonId">
+    <End Role="Pokemon" Type="Self.Pokemon" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PokemonOwners" Type="Self.PokemonOwners" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pokemon">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PokemonOwners">
+        <PropertyRef Name="PokemonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reviews_Pokemon_PokemonId">
+    <End Role="Pokemon" Type="Self.Pokemon" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pokemon">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reviews">
+        <PropertyRef Name="PokemonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reviews_Reviewers_ReviewerId">
+    <End Role="Reviewers" Type="Self.Reviewers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reviewers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reviews">
+        <PropertyRef Name="ReviewerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PokemonModelStoreContainer">
+    <EntitySet Name="__EFMigrationsHistory" EntityType="Self.__EFMigrationsHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="countries" EntityType="Self.countries" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Owners" EntityType="Self.Owners" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pokemon" EntityType="Self.Pokemon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PokemonCategories" EntityType="Self.PokemonCategories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PokemonOwners" EntityType="Self.PokemonOwners" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reviewers" EntityType="Self.Reviewers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reviews" EntityType="Self.Reviews" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Owners_countries_CountryId" Association="Self.FK_Owners_countries_CountryId">
+      <End Role="countries" EntitySet="countries" />
+      <End Role="Owners" EntitySet="Owners" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PokemonCategories_Categories_CategoryId" Association="Self.FK_PokemonCategories_Categories_CategoryId">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="PokemonCategories" EntitySet="PokemonCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PokemonCategories_Pokemon_PokemonId" Association="Self.FK_PokemonCategories_Pokemon_PokemonId">
+      <End Role="Pokemon" EntitySet="Pokemon" />
+      <End Role="PokemonCategories" EntitySet="PokemonCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PokemonOwners_Owners_OwnerId" Association="Self.FK_PokemonOwners_Owners_OwnerId">
+      <End Role="Owners" EntitySet="Owners" />
+      <End Role="PokemonOwners" EntitySet="PokemonOwners" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PokemonOwners_Pokemon_PokemonId" Association="Self.FK_PokemonOwners_Pokemon_PokemonId">
+      <End Role="Pokemon" EntitySet="Pokemon" />
+      <End Role="PokemonOwners" EntitySet="PokemonOwners" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reviews_Pokemon_PokemonId" Association="Self.FK_Reviews_Pokemon_PokemonId">
+      <End Role="Pokemon" EntitySet="Pokemon" />
+      <End Role="Reviews" EntitySet="Reviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reviews_Reviewers_ReviewerId" Association="Self.FK_Reviews_Reviewers_ReviewerId">
+      <End Role="Reviewers" EntitySet="Reviewers" />
+      <End Role="Reviews" EntitySet="Reviews" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

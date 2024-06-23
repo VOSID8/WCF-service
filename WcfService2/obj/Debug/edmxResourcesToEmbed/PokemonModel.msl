@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PokemonReviewModelStoreContainer" CdmEntityContainer="PokemonReviewEntities">
+    <EntitySetMapping Name="C__EFMigrationsHistory">
+      <EntityTypeMapping TypeName="PokemonReviewModel.C__EFMigrationsHistory">
+        <MappingFragment StoreEntitySet="__EFMigrationsHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="PokemonReviewModel.Category">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="countries">
+      <EntityTypeMapping TypeName="PokemonReviewModel.country">
+        <MappingFragment StoreEntitySet="countries">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Owners">
+      <EntityTypeMapping TypeName="PokemonReviewModel.Owner">
+        <MappingFragment StoreEntitySet="Owners">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Gym" ColumnName="Gym" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pokemons">
+      <EntityTypeMapping TypeName="PokemonReviewModel.Pokemon">
+        <MappingFragment StoreEntitySet="Pokemon">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reviewers">
+      <EntityTypeMapping TypeName="PokemonReviewModel.Reviewer">
+        <MappingFragment StoreEntitySet="Reviewers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reviews">
+      <EntityTypeMapping TypeName="PokemonReviewModel.Review">
+        <MappingFragment StoreEntitySet="Reviews">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="ReviewerId" ColumnName="ReviewerId" />
+          <ScalarProperty Name="PokemonId" ColumnName="PokemonId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="PokemonCategories" TypeName="PokemonReviewModel.PokemonCategories" StoreEntitySet="PokemonCategories">
+      <EndProperty Name="Categories">
+        <ScalarProperty Name="Id" ColumnName="CategoryId" />
+      </EndProperty>
+      <EndProperty Name="Pokemon">
+        <ScalarProperty Name="Id" ColumnName="PokemonId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PokemonOwners" TypeName="PokemonReviewModel.PokemonOwners" StoreEntitySet="PokemonOwners">
+      <EndProperty Name="Owners">
+        <ScalarProperty Name="Id" ColumnName="OwnerId" />
+      </EndProperty>
+      <EndProperty Name="Pokemon">
+        <ScalarProperty Name="Id" ColumnName="PokemonId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

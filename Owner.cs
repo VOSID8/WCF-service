@@ -25,9 +25,9 @@ namespace WcfService1
         public string LastName { get; set; }
         public string Gym { get; set; }
         public int CountryId { get; set; }
-    
-        public virtual country country { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pokemon> Pokemons { get; set; }
+        public string Name { get; internal set; }
     }
 }

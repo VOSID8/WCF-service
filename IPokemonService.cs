@@ -1,43 +1,59 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
 using System.ServiceModel;
 using System.ServiceModel.Web;
-using System.Text;
 
 namespace WcfService1
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
     [ServiceContract]
     public interface IPokemonService
     {
         [OperationContract]
-        [WebGet]
+        [WebGet(UriTemplate = "/GetPokemonDb")]
+        List<Pokemon> GetPokemonDb();
+
+        [OperationContract]
+        [WebGet(UriTemplate = "/GetPokemonById/{id}")]
+        Pokemon GetPokemonById(string id);
+
+
+        [OperationContract]
+        [WebGet(UriTemplate = "/GetPokemon")]
         List<Pokemon> GetPokemon();
-        
-    }
 
+        [OperationContract]
+        [WebGet(UriTemplate = "/GetOwners")]
+        List<Owner> GetOwners();
 
-    // Use a data contract as illustrated in the sample below to add composite types to service operations.
-    [DataContract]
-    public class CompositeType
-    {
-        bool boolValue = true;
-        string stringValue = "Hello ";
+        [OperationContract]
+        [WebGet(UriTemplate = "/GetReviewers")]
+        List<Reviewer> GetReviewers();
 
-        [DataMember]
-        public bool BoolValue
-        {
-            get { return boolValue; }
-            set { boolValue = value; }
-        }
+        [OperationContract]
+        [WebGet(UriTemplate = "/GetReviews")]
+        List<Review> GetReviews();
 
-        [DataMember]
-        public string StringValue
-        {
-            get { return stringValue; }
-            set { stringValue = value; }
-        }
+        [OperationContract]
+        [WebGet(UriTemplate = "/GetCategories")]
+        List<Category> GetCategories();
+
+        [OperationContract]
+        [WebGet(UriTemplate = "/GetPokemonCategories")]
+        List<PokemonCategory> GetPokemonCategories();
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", UriTemplate = "/AddPokemon", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        void AddPokemon(Pokemon pokemon);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", UriTemplate = "/AddOwner", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        void AddOwner(Owner owner);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", UriTemplate = "/AddReview", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        void AddReview(Review review);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", UriTemplate = "/AddCategory", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        void AddCategory(Category category);
     }
 }

@@ -27,7 +27,6 @@ namespace WcfService1
     
         public virtual DbSet<C__EFMigrationsHistory> C__EFMigrationsHistory { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<country> countries { get; set; }
         public virtual DbSet<Owner> Owners { get; set; }
         public virtual DbSet<Pokemon> Pokemons { get; set; }
         public virtual DbSet<Reviewer> Reviewers { get; set; }

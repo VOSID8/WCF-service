@@ -5,3 +5,8 @@ C:\Projects\WCF-service\obj\Debug\WcfService1.csproj.AssemblyReference.cache
 C:\Projects\WCF-service\obj\Debug\WcfService1.csproj.CoreCompileInputs.cache
 C:\Projects\WCF-service\obj\Debug\WcfService1.dll
 C:\Projects\WCF-service\obj\Debug\WcfService1.pdb
+C:\Projects\WCF-service\bin\EntityFramework.dll
+C:\Projects\WCF-service\bin\EntityFramework.SqlServer.dll
+C:\Projects\WCF-service\bin\EntityFramework.xml
+C:\Projects\WCF-service\bin\EntityFramework.SqlServer.xml
+C:\Projects\WCF-service\obj\Debug\WcfService1.csproj.CopyComplete
