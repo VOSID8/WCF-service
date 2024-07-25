@@ -1,0 +1,63 @@
+Detailed Explanation
+LookupController
+
+Description: The main entry point for all lookup-related HTTP requests.
+Responsibilities:
+Receives requests.
+Logs the requests and responses.
+Calls the LookupHelper to process the business logic.
+Returns JSON responses.
+LookupHelper
+
+Description: Acts as a thin controller, separating the business logic from the controller.
+Responsibilities:
+Applies business logic.
+Manages caching by interacting with the CacheProvider and CacheKeyGenerator.
+Calls the LookupRepository to retrieve data from the database.
+ILookupRepository
+
+Description: Defines the interface for the repository.
+Responsibilities:
+Specifies the methods for data access (e.g., GetBUKScorpioProductPaged, GetSystemConfiguration, etc.).
+LookupRepository
+
+Description: Implements the ILookupRepository interface.
+Responsibilities:
+Contains the actual data access logic.
+Uses Entity Framework to interact with the DataContext for database operations.
+DataContext
+
+Description: The Entity Framework context.
+Responsibilities:
+Manages database connections and access.
+Defines DbSets for each entity (e.g., TS_GPTBUKScorpioProduct, TS_GPTSYSC, etc.).
+Database
+
+Description: The database storing all application data.
+Responsibilities:
+Stores data in tables like TS_GPTBUKScorpioProduct, TS_GPTSYSC, etc.
+CacheProvider
+
+Description: Manages caching to improve performance.
+Responsibilities:
+Handles caching logic to store and retrieve data.
+Ensures data consistency with locking mechanisms.
+CacheKeyGenerator
+
+Description: Generates unique keys for caching.
+Responsibilities:
+Creates unique cache keys based on method names and parameters.
+PaginatedList.cs
+
+Description: Provides paging functionality for lists.
+Responsibilities:
+Implements paging logic to handle large datasets efficiently.
+Data Flow
+Client Request: A client application sends an HTTP request to LookupController.
+Controller Logic: LookupController receives the request and calls the LookupHelper.
+Helper Logic: LookupHelper applies business logic, checks the cache, and calls the LookupRepository if necessary.
+Data Access: LookupRepository fetches data from the DataContext.
+Database Interaction: DataContext interacts with the database to retrieve or store data.
+Caching: CacheProvider caches the data to improve future request performance.
+Paging: PaginatedList handles paging for large datasets.
+Response: LookupHelper sends the data back to LookupController, which then returns it as a JSON response to the client application.
